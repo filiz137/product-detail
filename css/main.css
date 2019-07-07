@@ -58,7 +58,7 @@ ul {
 
 @font-face {
   font-family: "boyner-mobile";
-  src: url("/fonts/boyner/boyner-mobile.woff2") format("woff2"), url("/fonts/boyner/boyner-mobile.woff") format("woff"), url("/fonts/boyner/boyner-mobile.ttf") format("truetype");
+  src: url("./fonts/boyner/boyner-mobile.woff2") format("woff2"), url("./fonts/boyner/boyner-mobile.woff") format("woff"), url("./fonts/boyner/boyner-mobile.ttf") format("truetype");
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-display: swap;
@@ -393,7 +393,7 @@ html {
 
 @font-face {
   font-family: "Avenir";
-  src: url("/fonts/Avenir/AvenirLTStd-Roman.woff2") format("woff2"), url("/fonts/Avenir/AvenirLTStd-Roman.woff") format("woff"), url("/fonts/Avenir/AvenirLTStd-Roman.ttf") format("truetype");
+  src: url("./fonts/Avenir/AvenirLTStd-Roman.woff2") format("woff2"), url("./fonts/Avenir/AvenirLTStd-Roman.woff") format("woff"), url("./fonts/Avenir/AvenirLTStd-Roman.ttf") format("truetype");
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-display: swap;
