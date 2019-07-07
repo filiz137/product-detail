@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Boyner.com.tr | Ödeme</title>
+	<link href="https://fonts.googleapis.com/css?family=Arimo:400,700&amp;subset=latin-ext" rel="stylesheet">
+	<!-- vendor:css -->
+	<!-- endinject -->
+	<!-- main:css -->
+	<link rel="stylesheet" href="../../../css/main.css">
+	<!-- endinject -->
+	<!-- page:../../../css/account.css -->
+	<link rel="stylesheet" href="../../../css/account.css">
+	<!-- endinject -->
+</head>
+
+<body>
+	
+	<!-- inject:../src/html/partials/header/_simple-header.html -->
+	<header class="o-simpleHeader">
+    <a class="a-headerFuncBtn btn bo-arrow-left" href="#">Geri</a>
+    <a class="a-headerLogo" href="#">
+        <img src="/img/boyner.svg" alt="">
+    </a>
+    <img class="a-secureLogo" src="/img/globalsign.svg" alt="Secure Global Sign">
+</header>
+	<!-- endinject -->
+	<div class="main" data-account>
+		<div class="o-loadingLarge" v-if="loadingLarge">
+			<img src="/img/boyner.svg" class="o-loadingLarge__img" alt=""> Yükleniyor...
+		</div>
+		<div class="o-account" v-cloak>
+			<div class="o-accountTab">
+				<input class="hide" id="loginTab" name="loginType" data-loginTab type="radio" checked>
+				<input class="hide" id="registerTab" name="loginType" data-registerTab type="radio">
+				<input class="hide" id="guestTab" name="loginType" data-guestTab type="radio">
+				<nav class="o-accountTab__nav">
+					<label class="o-accountTab__nav--title loginTab" for="loginTab" onclick="selectTab('uye-girisi')">
+						Üye Girişi
+					</label>
+					<label class="o-accountTab__nav--title registerTab" for="registerTab" onclick="selectTab('uye-ol')">
+						Üye Ol
+					</label>
+				</nav>
+				<section class="o-accountTab__section">
+					<div class="loginTab tab-pane">
+						<form id="loginForm" data-validate v-if="!forgotPassword">
+							<input id="loginQuickBuy" name="isGuestQuickBuy" type="hidden" value="False">
+							<input id="loginReturnUrl" name="ReturnUrl" type="hidden" value="">
+							<div class="form-rows">
+								<div class="form-group form-element col-12">
+									<input class="focus-input form-control" id="customerEmail" v-model="login.Email" type="email" title="Lütfen geçerli bir eposta adresi giriniz."
+									 pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$"
+									 required>
+									<label class="focus-label" for="customerEmail">E-posta Adresiniz:</label>
+								</div>
+							</div>
+							<div class="form-rows">
+								<div class="form-group form-element col-12">
+									<span class="lookPassword" @click="showPassword()">Şifreyi Göster</span>
+									<input class="focus-input form-control" id="customerPassword" v-model="login.Password" @keyup.enter="validCaptcha" type="password"
+									 minlength="6" required>
+									<label class="focus-label" for="customerPassword">Şifreniz:</label>
+								</div>
+							</div>
+							<div class="recaptcha-terms-text">Bu sayfa reCAPTCHA tarafından korunmaktadır ve Google
+								<a href="https://www.google.com/policies/privacy/" target="_blank" rel="noreferrer"> Gizlilik Politikası </a>ve
+								<a href="https://www.google.com/policies/terms/" target="_blank" rel="noreferrer"> Hizmet Şartları</a>'na tabidir.</div>
+							<div id='reCaptcha' class="g-recaptcha" data-badge="inline" data-size="invisible" style="display:none;"></div>
+							<div class="form-rows mt-10">
+								<div class="form-group col-12">
+									<button class="btn -greenBtn -large col-12" type="button" @click="validCaptcha">
+										<div class="loading" v-if="loading">
+											Yükleniyor...
+										</div>
+										<div v-else>Giriş Yap</div>
+									</button>
+								</div>
+							</div>
+							<div class="form-rows mt-10">
+								<div class="form-group form-element col-12">
+									<button class="btn -link -medium pl-0" type="button" @click="forgotPassword = true">Şifremi Unuttum</button>
+								</div>
+							</div>
+						</form>
+						<form id="forgotPasswordForm" data-validate v-else>
+							<h3 class="o-account__title">Şifremi Unuttum</h3>
+							<div class="o-account__message -success" v-if="responseMessage.isShow">
+								<strong>Şifrenizi yenilemek için kullanabileceğiniz bağlantı
+									<strong>ugur.kucuker@boyner.com.tr</strong> adresine gönderilmiştir.</strong>
+							</div>
+							<div v-if="responseMessage.isShow == false">
+								<div class="form-rows">
+									<div class="form-group form-element col-12">
+										<input class="focus-input form-control" id="forgotEmail" v-model="forgotPasswords.Email" type="email" title="Lütfen geçerli bir eposta adresi giriniz."
+										 pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$"
+										 required>
+										<label class="focus-label" for="forgotEmail">E-posta Adresiniz:</label>
+									</div>
+								</div>
+								<div class="form-rows mt-15">
+									<div class="form-group col-12">
+										<button class="btn -border -greenBtn -large col-12" type="button" @@click="forgotPasswordPost">
+											<div class="loading" v-if="loading">
+												Yükleniyor...
+											</div>
+											<div v-else>Gönder</div>
+										</button>
+									</div>
+								</div>
+							</div>
+							<button class="btn -back -small pl-0" type="button" @click="forgotPassword = false, responseMessage.isShow = false"> Geri Dön</button>
+						</form>
+					</div>
+					<div class="registerTab tab-pane">
+						<form id="registerForm" data-validate>
+							<input id="registerQuickBuy" name="isGuestQuickBuy" type="hidden" value="False">
+							<input id="registerReturnUrl" name="ReturnUrl" type="hidden" value="">
+							<input id="facebookId" name="RegisterModel.Main.FacebookID" type="hidden" value="">
+							<div class="form-rows">
+								<div class="form-group form-element col-12">
+									<input class="focus-input form-control" id="name" v-model="register.Main.FirstName" type="text" minlength="2" maxlength="50"
+									 title="Lütfen adınızı giriniz." pattern="^[a-zA-ZğĞıİüÜöÖşŞçÇ]*$" required>
+									<label class="focus-label" for="name">Adınız:</label>
+								</div>
+								<div class="form-group form-element col-12">
+									<input class="focus-input form-control" id="surname" v-model="register.Main.LastName" type="text" minlength="2" maxlength="50"
+									 title="Lütfen soyadınızı giriniz." pattern="^[a-zA-ZğĞıİüÜöÖşŞçÇ]*$" required>
+									<label class="focus-label" for="surname">Soyadınız:</label>
+								</div>
+							</div>
+							<div class="form-rows">
+								<div class="form-group form-element col-12">
+									<input class="focus-input form-control" id="email" v-model="register.Main.Email" type="email" title="Lütfen e-posta adresi giriniz."
+									 pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$"
+									 required>
+									<label class="focus-label" for="email">E-posta Adresiniz:</label>
+								</div>
+							</div>
+							<div class="form-rows">
+								<div class="form-group form-element col-12">
+									<input class="focus-input form-control" id="password" v-model="register.NewPassword" type="password" title="Lütfen şifrenizi giriniz."
+									 @change="matchPassword" required>
+									<label class="focus-label" for="password">Şifreniz:</label>
+								</div>
+								<div class="form-group form-element col-12">
+									<input class="focus-input form-control" id="passwordConfirmed" v-model="register.ConfirmNewPassword" type="password" title="Lütfen yeni şifrenizi tekrar giriniz."
+									 @change="matchPassword" required>
+									<label class="focus-label" for="passwordConfirmed">Şifre (Tekrar):</label>
+								</div>
+							</div>
+							<div class="form-rows">
+								<div class="form-group form-element col-12">
+									<input class="focus-input form-control" id="phone" v-model="register.Main.CellPhone" type="tel" minlength="10" maxlength="10"
+									 title="Lütfen cep telefonu numaranızı giriniz." pattern="^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$" required>
+									<label class="focus-label" for="phone">Cep Telefonunuz:</label>
+								</div>
+							</div>
+							<div class="form-rows mt-30">
+								<span class="ml-5">Cinsiyet:</span>
+								<div class="radio ml-10">
+									<input class="custom-radio" id="female" v-model="register.Main.genderid" name="gender" value="famale" value="3" type="radio"
+									 required>
+									<label class="custom-radio-label" for="female">Kadın</label>
+								</div>
+								<div class="radio ml-20">
+									<input class="custom-radio" id="male" v-model="register.Main.genderid" name="gender" value="male" type="radio" value="1"
+									 required>
+									<label class="custom-radio-label" for="male">Erkek</label>
+								</div>
+							</div>
+							<div class="form-rows mt-30 mb-20">
+								<label class="label form-group col-12" for="RegisterModel_main_day">Doğum Tarihi:</label>
+								<div class="form-group select-list -medium col-4">
+									<select class="select-control" name="RegisterModel_main_day" v-model="register.Main.day" type="select-one" required>
+										<option value="" selected>Gün</option>
+										<option value="01">1</option>
+										<option value="02">2</option>
+										<option value="03">3</option>
+										<option value="04">4</option>
+										<option value="05">5</option>
+										<option value="06">6</option>
+										<option value="07">7</option>
+										<option value="08">8</option>
+										<option value="09">9</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+										<option value="13">13</option>
+										<option value="14">14</option>
+										<option value="15">15</option>
+										<option value="16">16</option>
+										<option value="17">17</option>
+										<option value="18">18</option>
+										<option value="19">19</option>
+										<option value="20">20</option>
+										<option value="21">21</option>
+										<option value="22">22</option>
+										<option value="23">23</option>
+										<option value="24">24</option>
+										<option value="25">25</option>
+										<option value="26">26</option>
+										<option value="27">27</option>
+										<option value="28">28</option>
+										<option value="29">29</option>
+										<option value="30">30</option>
+										<option value="31">31</option>
+									</select>
+								</div>
+								<div class="form-group select-list -medium col-4">
+									<select class="select-control" name="RegisterModel_main_month" v-model="register.Main.month" type="select-one" required>
+										<option value="" selected>Ay</option>
+										<option class="01">Ocak</option>
+										<option class="01">Şubat</option>
+										<option class="01">Mart</option>
+										<option class="01">Nisan</option>
+										<option class="01">Mayıs</option>
+										<option class="01">Haziran</option>
+										<option class="01">Temmuz</option>
+										<option class="01">Ağustos</option>
+									</select>
+								</div>
+								<div class="form-group select-list -medium col-4">
+									<select class="select-control" name="RegisterModel_main_year" v-model="register.Main.year" type="select-one" required>
+										<option value="" selected>Gün</option>
+										<option v-for="n in 71" :value="n+1939">{{n+1939}}</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-rows mb-10 mt-15">
+								<div class="form-group col-12">
+									<div class="checkbox -agreement">
+										<input class="custom-checkbox" id="agreement1" v-model="register.ReceiveCampaignMessages" name="agreement" type="checkbox"
+										 checked>
+										<label class="custom-checkbox-label" for="agreement1">
+											Boyner Büyük Mağazacılık A.Ş.'ye tarafıma ticari elektronik ileti gönderilmesi için burada da belirtilen iznim vardır.
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-rows">
+								<div class="form-group col-12">
+									<div class="checkbox -agreement">
+										<input class="custom-checkbox" id="agreement" v-model="register.MembershipAgreement" name="agreement" type="checkbox" title="Lütfen üyelik sözleşmesini onaylayın."
+										 title="Lütfen üyelik sözleşmesini onaylayın." required checked>
+										<label class="custom-checkbox-label" for="agreement">
+											<span>
+												<b>Üyelik Sözleşmesi</b> 'ni okudum, onaylıyorum.</span>
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-rows mt-15">
+								<div class="form-group col-12">
+									<button class="btn -greenBtn -large col-12" type="button" @click="registerPost">
+										<div class="loading" v-if="loading">
+											Yükleniyor...
+										</div>
+										<div v-else>Üyeliği Tamamla</div>
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="guestTab tab-pane">
+						<form id="guestForm" data-validate>
+							<h3 class="o-account__title">Üye Olmadan Satın Al</h3>
+							<input id="guestQuickBuy" name="isGuestQuickBuy" type="hidden" value="False">
+							<input id="guestReturnUrl" name="ReturnUrl" type="hidden" value="">
+							<div class="form-rows">
+								<div class="form-group form-element col-12">
+									<input class="focus-input" id="guestEmail" v-model="guestCheckout.Email" type="email" title="Lütfen geçerli bir eposta adresi giriniz."
+									 pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$"
+									 required>
+									<label class="focus-label" for="guestEmail">E-posta Adresiniz:</label>
+								</div>
+							</div>
+							<div class="form-rows mt-15">
+								<div class="form-group col-12">
+									<button class="btn -greenBtn -large col-12" type="button" @click="guestCheckoutPost">
+										<div class="loading" v-if="loading">
+											Yükleniyor...
+										</div>
+										<div v-else>Devam Et</div>
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+					<alert-modal v-if="notification.isShow" modal :title="notification.title" :message="notification.message" :status="notification.status"
+					 @close="showModal = false"></alert-modal>
+					<div class="form-rows" v-if="!forgotPassword">
+						<div class="or">
+							<span>veya şununla devam edin</span>
+						</div>
+						<label class="form-group guestTab col-12" for="guestTab" onclick="selectTab('uye-olmadan-devam-et')">
+							<div class="btn -greenBorder -guestLogin -medium">
+								Üye Olmadan Devam Et
+							</div>
+						</label>
+						<div class="form-group col-12">
+							<button class="btn -facebook -medium col-12" @click="getUserData">Facebook ile Devam Et</button>
+						</div>
+						<div class="form-group col-12">
+							<button class="btn -twitter -medium col-12">Twitter ile Devam Et</button>
+						</div>
+					</div>
+			</div>
+			</section>
+		</div>
+	</div>
+	</div>
+	<!-- inject:../src/html/partials/modal/_alert.html -->
+	<!-- endinject -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+	<script src="https://unpkg.com/vue@2.5.13/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+	<script type="text/javascript">
+
+
+
+		var onloadCallback = function () {
+			grecaptcha.render("reCaptcha", {
+				"sitekey": "6Lcoq1UUAAAAAAp04j3ucWmVVTIPbafl7lmiJ69l",
+				"callback": onSubmit
+			});
+		};
+		function onSubmit(token) {
+			account.loginPost(token)
+		}
+
+		//FB Login
+		window.fbAsyncInit = function () {
+			FB.init({
+				appId: '1405051112974042',
+				cookie: true,
+				xfbml: true,
+				version: 'v3.0'
+			});
+			FB.AppEvents.logPageView();
+		};
+
+		(function (d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) { return; }
+			js = d.createElement(s); js.id = id;
+			js.src = "https://connect.facebook.net/en_US/sdk.js";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+	<!-- vendor:js -->
+	<script src="../../../js/vendors/validate.js"></script>
+	<script src="../../../js/vendors/validityState-polyfill.js"></script>
+	<!-- endinject -->
+	<!-- page:../../../js/pages/account/account.js -->
+	<script src="../../../js/pages/account/account.js"></script>
+	<!-- endinject -->
+</body>
+
+</html>

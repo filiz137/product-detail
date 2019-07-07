@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Boyner.com.tr | Sepetim</title>
+	<link href="https://fonts.googleapis.com/css?family=Arimo:400,700&amp;subset=latin-ext" rel="stylesheet">
+	<!-- vendor:css -->
+	<!-- endinject -->
+	<!-- main:css -->
+	<link rel="stylesheet" href="../../../css/main.css">
+	<!-- endinject -->
+	<!-- page:../../../css/basket.css -->
+	<link rel="stylesheet" href="../../../css/basket.css">
+	<!-- endinject -->
+</head>
+
+<body>
+	<!-- inject:../src/html/partials/header/_simple-header.html -->
+	<header class="o-simpleHeader">
+    <a class="a-headerFuncBtn btn bo-arrow-left" href="#">Geri</a>
+    <a class="a-headerLogo" href="#">
+        <img src="/img/boyner.svg" alt="">
+    </a>
+    <img class="a-secureLogo" src="/img/globalsign.svg" alt="Secure Global Sign">
+</header>
+	<!-- endinject -->
+	<div class="main" data-checkout>
+		<div class="o-basket">
+			<div class="loading" v-if="loading">
+				Yükleniyor...
+			</div>
+			<!-- <div class="o-simpleSubTotal">
+				<div class="o-simpleSubTotal__item">
+					Toplam : 
+					<strong class="o-simpleSubTotal__item--price">1.233,34 TL</strong>
+				</div>
+				<div class="o-simpleSubTotal__item">
+					<a href="#" class="btn o-simpleSubTotal__item--btn">DEVAM ET
+						<i class="bo-arrow-right-bold"></i>
+					</a>
+				</div>
+			</div> -->
+			<!-- inject:../src/html/partials/checkout/_simple-sub-total.html -->
+			<div class="o-simpleSubTotal">
+	<div class="o-simpleSubTotal__item">
+		Toplam:
+		<strong class="o-simpleSubTotal__item--price">1.233,34 TL</strong>
+	</div>
+	<div class="o-simpleSubTotal__item">
+		<a href="#" class="btn o-simpleSubTotal__item--btn bo-arrow-right-bold">
+			Devam et
+		</a>
+	</div>
+</div>
+			<!-- endinject -->
+			<basket-list v-for="product in products" :product="product" :key="product.id" @remove-item="removeFromCart"></basket-list>
+		</div>
+		<order-summary :total="total" :kdv="displayItems.kdv">
+			<div class="row o-orderSummary__item" slot="discount">
+				<div class="o-orderSummary__item--label col-6">İndirim Tutarı</div>
+				<div class="o-orderSummary__item--val col-6">00,0</div>
+			</div>
+			<button class="btn -greenBtn -arrow -large" slot="next-btn">Devam Et</button>
+		</order-summary>
+		<campaign-box :giftcard="displayItems.giftcard"></campaign-box>
+
+		<!-- <div class="o-productList">
+			<div class="o-productList__header">
+				<a href="#" class="a-backToShopping">
+					<i class="bo-arrow-back"></i> Alışverişe Geri Dön</a>
+				<h3 class="o-productList__header--title">Yukarıdaki ürünleri satın alanlar bunları da satın aldı…</h3>
+			</div>
+			<div class="o-productList__content">
+				<div class="o-productCard" v-for="item in 5">
+					<button type="button" class="btn -rounded -white btn-addToFavorite bo-like"></button>
+					<img src="https://statics.boyner.com.tr/mnresize/325/451/productimages/520664876_31_12.jpg" class="o-productCard__img" width="100%"
+					 alt="Siyah gulpEşofman">
+					<div class="o-productCard__content">
+						<a href="#" class="o-productCard__link">
+							<h2 class="o-productCard__content--name">People By Fabrika Siyah Desensiz Düz</h2>
+						</a>
+						<div class="m-productPrice">
+							<div class="a-productPrice__discount -discount">%20
+								<span>İNDİRİM</span>
+							</div>
+							<div class="m-productPrice__content">
+								<span class="a-m-productPrice -oldPrice">253.90 TL</span>
+								<span class="a-m-productPrice -salePrice">213.90 TL</span>
+							</div>
+						</div>
+						<button type="button" class="btn -border -xsmall btn-addToCard">Sepete At</button>
+					</div>
+				</div>
+			</div>
+		</div> -->
+	</div>
+	<!-- inject:../src/html/partials/checkout/_order-summary.html -->
+	<ul class="o-orderSummary">
+	<li class="o-orderSummary__item">Sepet Tutarı
+		<span>504,12 TL</span>
+	</li>
+	<li class="o-orderSummary__item">Kargo Toplam
+		<span class="o-orderSummary__total">0,00 TL</span>
+	</li>
+</ul>
+	<!-- endinject -->
+	<!-- inject:../src/html/partials/checkout/_basket-list.html -->
+	<script type="text/x-template" id="basket-list">
+	<div class="o-basket__item">
+		<a href="" class="o-basket__productImg">
+			<img :src="product.imageUrl" alt="">
+		</a>
+		<div class="o-basket__content">
+			<div class="o-basket__productBtn bo-close" @click="$emit('remove-item', product)"></div>
+			<div class="o-basket__productDesc">
+				<h3 class="o-basket__productDesc--name">{{product.productName}}</h3>
+				<div class="o-basket__variation">
+					<div class="o-basket__variation--item" v-for="variant in product.variants">
+						<strong class="o-basket__variation--label">Renk:</strong>
+						{{variant.color}}, 
+						<strong class="o-basket__variation--label">Beden:</strong>
+						{{variant.size}}
+					</div>
+				</div>
+			</div>
+			<div class="o-basket__productInfo">
+				<div class="select-list">
+					<select name="quantity" class="select-control" v-model="product.quantity">
+						<option v-for="option in product.stock" :value="option.value">{{option.value}}</option>
+					</select>
+				</div>
+				<div class="o-basket__productPrice">
+					<div class="m-productPrice">
+						<div class="m-productPrice__content">
+							<span class="a-m-productPrice -oldPrice">{{ product.oldPrice | currency }}</span>
+							<span class="a-m-productPrice -salePrice">{{ product.salePrice | currency }}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		
+		
+		
+		<!-- <div class="o-basket__productAction">
+			<a href="" class="o-basket__productAction--item nw-gift">
+				<span class="-underline">Hediye paketi istiyorum</span>
+			</a>
+			<a href="" class="o-basket__productAction--item nw-heart-o">
+				<span class="-underline">Favori</span>
+			</a>
+		</div> -->
+	</div>
+</script>
+	<!-- endinject -->
+	<!-- inject:../src/html/partials/checkout/_campaign-box.html -->
+	<script type="text/x-template" id="campaign-box">
+	<div class="o-campaignBox">
+		<div class="o-accordion">
+			<div class="m-revealer o-accordion__section" :class="{ '-open': (1 === accordionId) }">
+				<div class="m-revealer__trigger" @click="accordion(1)">
+					<h4 class="m-revealer__heading">
+						<img src="/img/hopi-logo.png" height="25" class="-hopi"> Kullanmak İstiyorum</h4>
+					<div class="m-revealer__icon bo-plus"></div>
+				</div>
+				<div class="m-revealer__content">
+					<form class="o-campign-form">
+						<input class="o-campign-form__input" type="text" title="KODU GİRİN" placeholder="KODU GİRİN" />
+						<button class="btn -black -small">Kullan</button>
+					</form>
+					<span class="btn -link -small" @click="accordion(0)">Vazgeç</span>
+				</div>
+			</div>
+			<div class="m-revealer o-accordion__section" :class="{ '-open': (2 === accordionId) }">
+				<div class="m-revealer__trigger" @click="accordion(2)">
+					<h4 class="m-revealer__heading">İndirim Kodu Kullan</h4>
+					<div class="m-revealer__icon bo-plus"></div>
+				</div>
+				<div class="m-revealer__content">
+					<form class="o-campign-form">
+						<input class="o-campign-form__input" type="text" title="KODU GİRİN" placeholder="KODU GİRİN" />
+						<button class="btn -black -small">Kullan</button>
+					</form>
+					<span class="btn -link -small" @click="accordion(0)">Vazgeç</span>
+				</div>
+			</div>
+			<div class="m-revealer o-accordion__section" :class="{ '-open': (3 === accordionId) }" v-if="giftcard">
+				<div class="m-revealer__trigger" @click="accordion(3)">
+					<h4 class="m-revealer__heading">Gift Card Kullan</h4>
+					<div class="m-revealer__icon bo-plus"></div>
+				</div>
+				<div class="m-revealer__content">
+					<form class="o-campign-form">
+						<input class="o-campign-form__input" type="text" title="KODU GİRİN" placeholder="KODU GİRİN" />
+						<button class="btn -black -small">Kullan</button>
+					</form>
+					<span class="btn -link -small" @click="accordion(0)">Vazgeç</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+	<!-- endinject -->
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+	<script src="https://unpkg.com/vue@2.5.13/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<!-- vendor:js -->
+	<script src="../../../js/vendors/validate.js"></script>
+	<script src="../../../js/vendors/validityState-polyfill.js"></script>
+	<!-- endinject -->
+	<!-- page:../../../js/pages/checkout/checkout.js -->
+	<script src="../../../js/pages/checkout/checkout.js"></script>
+	<!-- endinject -->
+
+
+</body>
+
+</html>

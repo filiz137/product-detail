@@ -1,0 +1,326 @@
+.mt-0 {
+  margin-top: 0px !important;
+}
+
+.pt-0 {
+  padding-top: 0px !important;
+}
+
+.mb-0 {
+  margin-bottom: 0px !important;
+}
+
+.pb-0 {
+  padding-bottom: 0px !important;
+}
+
+.ml-0 {
+  margin-left: 0px !important;
+}
+
+.pl-0 {
+  padding-left: 0px !important;
+}
+
+.mr-0 {
+  margin-right: 0px !important;
+}
+
+.pr-0 {
+  padding-right: 0px !important;
+}
+
+.mt-5 {
+  margin-top: 5px !important;
+}
+
+.pt-5 {
+  padding-top: 5px !important;
+}
+
+.mb-5 {
+  margin-bottom: 5px !important;
+}
+
+.pb-5 {
+  padding-bottom: 5px !important;
+}
+
+.ml-5 {
+  margin-left: 5px !important;
+}
+
+.pl-5 {
+  padding-left: 5px !important;
+}
+
+.mr-5 {
+  margin-right: 5px !important;
+}
+
+.pr-5 {
+  padding-right: 5px !important;
+}
+
+.mt-10 {
+  margin-top: 10px !important;
+}
+
+.pt-10 {
+  padding-top: 10px !important;
+}
+
+.mb-10 {
+  margin-bottom: 10px !important;
+}
+
+.pb-10 {
+  padding-bottom: 10px !important;
+}
+
+.ml-10 {
+  margin-left: 10px !important;
+}
+
+.pl-10 {
+  padding-left: 10px !important;
+}
+
+.mr-10 {
+  margin-right: 10px !important;
+}
+
+.pr-10 {
+  padding-right: 10px !important;
+}
+
+.mt-15 {
+  margin-top: 15px !important;
+}
+
+.pt-15 {
+  padding-top: 15px !important;
+}
+
+.mb-15 {
+  margin-bottom: 15px !important;
+}
+
+.pb-15 {
+  padding-bottom: 15px !important;
+}
+
+.ml-15 {
+  margin-left: 15px !important;
+}
+
+.pl-15 {
+  padding-left: 15px !important;
+}
+
+.mr-15 {
+  margin-right: 15px !important;
+}
+
+.pr-15 {
+  padding-right: 15px !important;
+}
+
+.mt-20 {
+  margin-top: 20px !important;
+}
+
+.pt-20 {
+  padding-top: 20px !important;
+}
+
+.mb-20 {
+  margin-bottom: 20px !important;
+}
+
+.pb-20 {
+  padding-bottom: 20px !important;
+}
+
+.ml-20 {
+  margin-left: 20px !important;
+}
+
+.pl-20 {
+  padding-left: 20px !important;
+}
+
+.mr-20 {
+  margin-right: 20px !important;
+}
+
+.pr-20 {
+  padding-right: 20px !important;
+}
+
+.mt-30 {
+  margin-top: 30px !important;
+}
+
+.pt-30 {
+  padding-top: 30px !important;
+}
+
+.mb-30 {
+  margin-bottom: 30px !important;
+}
+
+.pb-30 {
+  padding-bottom: 30px !important;
+}
+
+.ml-30 {
+  margin-left: 30px !important;
+}
+
+.pl-30 {
+  padding-left: 30px !important;
+}
+
+.mr-30 {
+  margin-right: 30px !important;
+}
+
+.pr-30 {
+  padding-right: 30px !important;
+}
+
+.mt-40 {
+  margin-top: 40px !important;
+}
+
+.pt-40 {
+  padding-top: 40px !important;
+}
+
+.mb-40 {
+  margin-bottom: 40px !important;
+}
+
+.pb-40 {
+  padding-bottom: 40px !important;
+}
+
+.ml-40 {
+  margin-left: 40px !important;
+}
+
+.pl-40 {
+  padding-left: 40px !important;
+}
+
+.mr-40 {
+  margin-right: 40px !important;
+}
+
+.pr-40 {
+  padding-right: 40px !important;
+}
+
+.o-header {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
+
+.swiper-slide {
+  display: flex;
+}
+
+.swiper-slide-img {
+  width: 100%;
+}
+
+.swiper-pagination-bullets {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  border: 1px solid #fff;
+  background-color: rgba(29, 29, 29, 0.5);
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  width: 14px;
+  height: 14px;
+  background-color: #1d1d1d;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMThweCIgaGVpZ2h0PSIzMnB4IiB2aWV3Qm94PSIwIDAgMTggMzIiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogc2tldGNodG9vbCA1NS4yICg3ODE4MSkgLSBodHRwczovL3NrZXRjaGFwcC5jb20gLS0+CiAgICA8dGl0bGU+NDZDQkNFRUEtQjJCNi00OEZELUE0MEQtQzRFMUVBNTE0RjgyPC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBza2V0Y2h0b29sLjwvZGVzYz4KICAgIDxnIGlkPSJkZXRhaWxQYWdlLm1vYmlsZSIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9IjAwMS1tb2JpbGUuZGV0YWlsIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMjAuMDAwMDAwLCAtMjc0LjAwMDAwMCkiIGZpbGw9IiMxRDFEMUQiIHN0cm9rZT0iI0ZGRkZGRiI+CiAgICAgICAgICAgIDxnIGlkPSJNb2JpbGUvRGV0YWlsL0dhbGxlcnkvU3VtbWFyeSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMC4wMDAwMDAsIDUwLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgPGcgaWQ9IlVJS2l0L0ljb24vSWNvbi9hcnJvd19yaWdodC1bIzM0Nl0tQ29weSI+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTAuMDAwMDAwLCAyMjIuMDAwMDAwKSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0xNS4zMDE1MjE1LDE3Ljk4MDQ4MSBMMjcuNjk3OTkzLDMwLjg5NjE2MDcgTDI0LjkwOTcwMjgsMzMuNzE2NTQ2MyBMMjQuNTU0MjcwOSwzMy4zNDYyMjkgQzIxLjQzMjUyMjksMzAuMDkzNzQyNiAxOC45MDc2NjA5LDI3LjQ2MzE3ODkgMTYuNTM5MzMwNiwyNC45OTU3MzQyIEMxNC4xMDE3ODU2LDIyLjQ1NjE4OTIgMTQuMTAxNzg1NiwyMi40NTYxODkyIDEyLjc1MTcwOTQsMjEuMDQ5NjA1IEMxMS40MTE2NTczLDE5LjY1MzQzOTYgMTEuNDkxMzM1OSwxOS43MzY0OTI0IDEwLjEzOTEzOTEsMTguMzI2NTkxNyBMOS44MDcxNDY0MSwxNy45ODA0MzE0IEwxMC4xMzkyMDc3LDE3LjYzNDMzNjkgQzEzLjA1MDI4NjUsMTQuNjAwMjMzIDIxLjU0NDQ1NDcsNS43NTA3MDIzIDI0LjUxODM1MDcsMi42NTM2ODc5IEwyNC44NzkxNjc0LDIuMjc3OTMzNDggTDI3LjYyNTQ3Miw1LjE0MDU4OTg3IEwxNi4yODMyMjAxLDE2Ljk1NzIzODQgTDE1LjkyMjUsMTYuNjExIEwxNS41Njg5NDY2LDE2LjI1NzQ0NjYgTDE1LjU3NjQ0NjYsMTYuMjQ5OTQ2NiBMMTYuMjkwNzQ4NiwxNi45NDk3MDg2IEwxNS4zMDE1MjE1LDE3Ljk4MDQ4MSBaIiBpZD0iSWNvbi9hcnJvd19sZWZ0LVsjMzM0XSI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+");
+}
+
+.swiper-button-next {
+  transform: rotate(180deg);
+}
+
+.o-product__detail {
+  margin: 1.25rem;
+}
+
+.o-product__brand {
+  margin-bottom: 0.3125rem;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 22px;
+}
+
+.o-product__brandLink {
+  color: #1d1d1d;
+}
+
+.o-product__name {
+  padding-bottom: 1.5625rem;
+  color: #1d1d1d;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.o-product__isFreeCargo {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1.5625rem 0;
+  border-top: 0.5px solid #d0d0d0;
+  font-size: 1rem;
+}
+
+.o-product__freeCargoIcon {
+  width: 26px;
+  margin-right: 0.9375rem;
+  fill: #03a87c;
+}
+
+.a-discountBadge {
+  position: absolute;
+  z-index: 2;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  min-width: 30px;
+  padding: 0 0.9375rem;
+  margin-top: -50px;
+  background-color: #ee403d;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+/*# sourceMappingURL=maps/product-detail.css.map */

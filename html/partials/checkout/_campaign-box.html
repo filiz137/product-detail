@@ -1,0 +1,46 @@
+<script type="text/x-template" id="campaign-box">
+	<div class="o-campaignBox">
+		<div class="o-accordion">
+			<div class="m-revealer o-accordion__section" :class="{ '-open': (1 === accordionId) }">
+				<div class="m-revealer__trigger" @click="accordion(1)">
+					<h4 class="m-revealer__heading">
+						<img src="/img/hopi-logo.png" height="25" class="-hopi"> Kullanmak İstiyorum</h4>
+					<div class="m-revealer__icon bo-plus"></div>
+				</div>
+				<div class="m-revealer__content">
+					<form class="o-campign-form">
+						<input class="o-campign-form__input" type="text" title="KODU GİRİN" placeholder="KODU GİRİN" />
+						<button class="btn -black -small">Kullan</button>
+					</form>
+					<span class="btn -link -small" @click="accordion(0)">Vazgeç</span>
+				</div>
+			</div>
+			<div class="m-revealer o-accordion__section" :class="{ '-open': (2 === accordionId) }">
+				<div class="m-revealer__trigger" @click="accordion(2)">
+					<h4 class="m-revealer__heading">İndirim Kodu Kullan</h4>
+					<div class="m-revealer__icon bo-plus"></div>
+				</div>
+				<div class="m-revealer__content">
+					<form class="o-campign-form">
+						<input class="o-campign-form__input" type="text" title="KODU GİRİN" placeholder="KODU GİRİN" />
+						<button class="btn -black -small">Kullan</button>
+					</form>
+					<span class="btn -link -small" @click="accordion(0)">Vazgeç</span>
+				</div>
+			</div>
+			<div class="m-revealer o-accordion__section" :class="{ '-open': (3 === accordionId) }" v-if="giftcard">
+				<div class="m-revealer__trigger" @click="accordion(3)">
+					<h4 class="m-revealer__heading">Gift Card Kullan</h4>
+					<div class="m-revealer__icon bo-plus"></div>
+				</div>
+				<div class="m-revealer__content">
+					<form class="o-campign-form">
+						<input class="o-campign-form__input" type="text" title="KODU GİRİN" placeholder="KODU GİRİN" />
+						<button class="btn -black -small">Kullan</button>
+					</form>
+					<span class="btn -link -small" @click="accordion(0)">Vazgeç</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
