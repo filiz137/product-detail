@@ -2211,7 +2211,7 @@
 
   var http = axios$1.create({
     // baseURL: "http://10.100.12.103:5000/",
-    baseURL: "http://www.mocky.io/v2/"
+    baseURL: "https://www.mocky.io/v2/"
   });
   http.interceptors.request.use(function (config) {
     return config;
