@@ -57,7 +57,7 @@
 			</div>
 
 			<div class="share-container">
-				<button id="btn-share">Share</button>
+				<button id="btn-share" data-share-btn>Share</button>
 			</div>
 
 			<recommended-slider-loading-skeleton data-product-recommended-slider v-if="completeTheCombination.products.length === 0"></recommended-slider-loading-skeleton>
@@ -89,19 +89,49 @@
 	<script src="../../../js/pages/product/product-detail.js"></script>
 	<!-- endinject -->
 	<script>
-			window.addEventListener('load', function () {
-				if (!navigator.share) {
-					document.querySelector('.share-container').innerHTML = 'Web Share API not supported in this browser';
-					return;
-				}
-				document.getElementById('btn-share').addEventListener('click', function () {
-					navigator.share({
-						title: 'Check out this web share API demo',
-						text: 'Its really cool',
-						url: 'https://mobiforge.github.io/web-share-api.html',
-					});
+			// window.addEventListener('load', function () {
+			// 	if (!navigator.share) {
+			// 		document.querySelector('.share-container').innerHTML = 'Web Share API not supported in this browser';
+			// 		return;
+			// 	}
+			// 	document.getElementById('btn-share').addEventListener('click', function () {
+			// 		navigator.share({
+			// 			title: 'Check out this web share API demo',
+			// 			text: 'Its really cool',
+			// 			url: 'https://mobiforge.github.io/web-share-api.html',
+			// 		});
+			// 	});
+			// });
+
+			const shareBtn = document.querySelector('[data-share-btn]');
+				const ogBtnContent = shareBtn.textContent;
+				const title = document.querySelector('h1').textContent;
+				const url = document.querySelector('link[rel=canonical]') &&
+					document.querySelector('link[rel=canonical]').href ||
+					window.location.href;
+
+				shareBtn.addEventListener('click', () => {
+					if (navigator.share) {
+						navigator.share({
+							title,
+							url
+						}).then(() => {
+							showMessage(shareBtn, 'Thanks! 😄');
+						})
+							.catch(err => {
+								showMessage(shareBtn, `Couldn't share 🙁`);
+							});
+					} else {
+						showMessage(shareBtn, 'Not supported 🙅‍');
+					}
 				});
-			});
+
+				function showMessage(element, msg) {
+					element.textContent = msg;
+					setTimeout(() => {
+						element.textContent = ogBtnContent;
+					}, 2000);
+				}
 
 	</script>
 	</body>
