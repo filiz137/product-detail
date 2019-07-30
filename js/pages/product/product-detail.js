@@ -2767,6 +2767,7 @@
         }, 2000);
       },
       shareProduct: function () {
+        var vm = this;
         const shareBtn = document.querySelector('[data-share-btn]');
         const title = this.product.name;
         const url = document.querySelector('link[rel=canonical]') &&
@@ -2778,13 +2779,13 @@
             title,
             url
           }).then(() => {
-            showMessage(shareBtn, 'Thanks! 😄');
+            vm.showMessage(shareBtn, 'Thanks! 😄');
           })
             .catch(err => {
-              showMessage(shareBtn, `Couldn't share 🙁`);
+              vm.showMessage(shareBtn, `Couldn't share 🙁`);
             });
         } else {
-          showMessage(shareBtn, 'Not supported 🙅‍');
+          vm.showMessage(shareBtn, 'Not supported 🙅‍');
         }
 
       }
