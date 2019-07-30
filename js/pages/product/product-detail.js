@@ -2758,9 +2758,16 @@
           };
         }());
       },
-      shareProduct: function () {
+      showMessage: function (element, msg) {
         const shareBtn = document.querySelector('[data-share-btn]');
         const ogBtnContent = shareBtn.textContent;
+        element.textContent = msg;
+        setTimeout(() => {
+          element.textContent = ogBtnContent;
+        }, 2000);
+      },
+      shareProduct: function () {
+        const shareBtn = document.querySelector('[data-share-btn]');
         const title = this.product.name;
         const url = document.querySelector('link[rel=canonical]') &&
           document.querySelector('link[rel=canonical]').href ||
@@ -2780,13 +2787,7 @@
           showMessage(shareBtn, 'Not supported 🙅‍');
         }
 
-      },
-      showMessage: function (element, msg) {
-        element.textContent = msg;
-            setTimeout(() => {
-            element.textContent = ogBtnContent;
-          }, 2000);
-        }
+      }
     }
   });
 
