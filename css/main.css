@@ -2,21 +2,21 @@
 *,
 *:before,
 *:after {
+  box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
 }
 
 * {
-  margin: 0px;
-  padding: 0px;
-  border: 0px;
+  padding: 0;
+  margin: 0;
+  border: 0;
   background: none;
+  font-kerning: auto;
   -webkit-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-kerning: auto;
 }
 
 html {
@@ -25,7 +25,12 @@ html {
 }
 
 body {
+  padding-bottom: 20px;
   margin: 0;
+}
+
+[v-cloak] > * {
+  display: none;
 }
 
 [type=reset],
@@ -33,12 +38,6 @@ body {
 button,
 html [type=button] {
   -webkit-appearance: button;
-}
-
-@media (min-resolution: 2dppx) {
-  .image {
-    background-image: url(image@2x.png);
-  }
 }
 
 a,
@@ -58,7 +57,7 @@ ul {
 
 @font-face {
   font-family: "boyner-mobile";
-  src: url("./../fonts/boyner/boyner-mobile.woff2") format("woff2"), url("./../fonts/boyner/boyner-mobile.woff") format("woff"), url("./../fonts/boyner/boyner-mobile.ttf") format("truetype");
+  src: url("/fonts/boyner/boyner-mobile.woff2") format("woff2"), url("/fonts/boyner/boyner-mobile.woff") format("woff"), url("/fonts/boyner/boyner-mobile.ttf") format("truetype");
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-display: swap;
@@ -119,7 +118,12 @@ ul {
 }
 
 .bo-close:before {
-  content: "";
+  content: "";
+  width: 24px;
+  height: 24px;
+  background-image: url("/img/close.svg");
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .bo-facebook:before {
@@ -393,7 +397,7 @@ html {
 
 @font-face {
   font-family: "Avenir";
-  src: url("./../fonts/Avenir/AvenirLTStd-Roman.woff2") format("woff2"), url("./../fonts/Avenir/AvenirLTStd-Roman.woff") format("woff"), url("./../fonts/Avenir/AvenirLTStd-Roman.ttf") format("truetype");
+  src: url("/fonts/Avenir/AvenirLTStd-Roman.woff2") format("woff2"), url("/fonts/Avenir/AvenirLTStd-Roman.woff") format("woff"), url("/fonts/Avenir/AvenirLTStd-Roman.ttf") format("truetype");
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-display: swap;
@@ -418,6 +422,19 @@ body {
 
 .hide {
   display: none;
+}
+
+[v-cloak] > * {
+  display: none;
+}
+
+.-fixedBody {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
 }
 
 /*# sourceMappingURL=maps/main.css.map */
