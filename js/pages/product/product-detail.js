@@ -2400,7 +2400,7 @@
         var vm = this;
         var resolutionPath = "https://statics.boyner.com.tr/mnresize/".concat(resolution, "/-/productimages/");
         var imagePath = vm.slider.products[index].imageDetail.urlPath;
-        return imagePath === "" ? "/img/before_load_image.png" : resolutionPath + imagePath + ".jpg";
+        return imagePath === "" ? "/product-detail/img/before_load_image.png" : resolutionPath + imagePath + ".jpg";
       },
       isEmptyImagePath: function isEmptyImagePath(index) {
         var vm = this;
@@ -2419,7 +2419,7 @@
         var vm = this;
         var resolutionPath = "https://statics.boyner.com.tr/mnresize/".concat(resolution, "/-/productimages/");
         var imagePath = vm.slider[index].urlPath;
-        return imagePath === "" ? "/img/before_load_image.png" : resolutionPath + imagePath + ".jpg";
+        return imagePath === "" ? "/product-detail/img/before_load_image.png" : resolutionPath + imagePath + ".jpg";
       }
     }
   });
