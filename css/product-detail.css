@@ -462,7 +462,7 @@
 
 .sizeChart .tab-wrap .tab-content-wrap .tab-content .table-list .open-acc.active .icon-plus {
   top: 23px;
-  background-image: url("/img/arrow-up.svg");
+  background-image: url("/product-detail/img/arrow-up.svg");
 }
 
 .sizeChart .tab-wrap .tab-content-wrap .tab-content .table-list .open-acc .icon-plus {
@@ -472,7 +472,7 @@
   display: flex;
   width: 24px;
   height: 24px;
-  background-image: url("/img/arrow-down.svg");
+  background-image: url("/product-detail/img/arrow-down.svg");
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -615,7 +615,7 @@
 }
 
 .swiper-button-prev:before {
-  background-image: url("/img/arrow_left.svg");
+  background-image: url("/product-detail/img/arrow_left.svg");
 }
 
 .swiper-button-next {
@@ -623,7 +623,7 @@
 }
 
 .swiper-button-next:before {
-  background-image: url("/img/arrow_right.svg");
+  background-image: url("/product-detail/img/arrow_right.svg");
 }
 
 .swiper-zoom-container {
