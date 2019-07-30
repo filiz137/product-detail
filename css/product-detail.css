@@ -475,6 +475,7 @@
   background-image: url("/product-detail/img/arrow-down.svg");
   background-repeat: no-repeat;
   background-position: center;
+  pointer-events: none;
 }
 
 .sizeChart .tab-wrap .tab-content-wrap .tab-content .table-list .content-acc {
@@ -548,6 +549,10 @@
   color: #1d1d1d;
   font-size: 0.75rem;
   line-height: 16px;
+}
+
+.swiper-container {
+  flex-basis: 100%;
 }
 
 .swiper-product-slider {
@@ -643,8 +648,9 @@
 .o-loading {
   display: flex;
   flex-direction: row;
-  padding: 1.25rem 0.625rem;
-  background-color: #fff;
+  padding: 1.25rem 0.625rem 1.25rem 0.625rem;
+  margin-bottom: 0.625rem;
+  background-color: white;
 }
 
 .o-loading__container {
@@ -845,10 +851,12 @@
 }
 
 .o-slider {
-  position: relative;
-  padding: 0;
-  margin-top: 0;
-  background-color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+  margin-bottom: 0.625rem;
+  background-color: white;
 }
 
 .o-slider.-visible {
@@ -857,10 +865,14 @@
 }
 
 .o-slider__header {
+  flex-grow: 50;
+  flex-shrink: 0;
   margin-bottom: 1.25rem;
   color: #1d1d1d;
   font-size: 1rem;
-  line-height: 22px;
+  /* 16px */
+  line-height: 1.375;
+  /* 22px */
 }
 
 .o-slider__description {
@@ -874,18 +886,22 @@
 .o-slider__brand {
   margin-bottom: 2px;
   color: #1d1d1d;
-  font-size: 0.875rem;
   font-weight: 400;
-  line-height: 18px;
+  font-size: 0.875rem;
+  /* 14px */
+  line-height: 1.28571;
+  /* 18px */
 }
 
 .o-slider__productName {
   overflow: hidden;
   margin-bottom: 0.625rem;
   color: #1d1d1d;
-  font-size: 0.75rem;
   font-weight: 400;
-  line-height: 16px;
+  font-size: 0.75rem;
+  /* 12px */
+  line-height: 1.33333;
+  /* 16px */
   max-width: 100%;
   white-space: nowrap;
   overflow: hidden;
@@ -895,23 +911,29 @@
 .o-slider__oldPrice {
   margin-bottom: 2px;
   color: #9b9b9b;
-  font-size: 0.875rem;
-  line-height: 18px;
   text-decoration: line-through;
+  font-size: 0.875rem;
+  /* 14px */
+  line-height: 1.28571;
+  /* 18px */
 }
 
 .o-slider__price {
   margin-bottom: 0.625rem;
   color: #1d1d1d;
-  font-size: 0.875rem;
   font-weight: 700;
-  line-height: 20px;
+  font-size: 0.875rem;
+  /* 14px */
+  line-height: 1.42857;
+  /* 20px */
 }
 
 .o-slider__colorOptions {
   color: #9b9b9b;
   font-size: 0.75rem;
-  line-height: 16px;
+  /* 12px */
+  line-height: 1.33333;
+  /* 16px */
 }
 
 .o-slider__sliderLink {
@@ -919,12 +941,13 @@
 }
 
 .o-slider__clearContent {
-  position: absolute;
-  top: 22px;
-  right: 20px;
+  flex-grow: 1;
+  flex-shrink: 0;
   color: #9b9b9b;
   font-size: 0.875rem;
-  line-height: 20px;
+  /* 14px */
+  line-height: 1.42857;
+  /* 20px */
 }
 
 .o-product {
@@ -932,8 +955,9 @@
 }
 
 .o-product__detail {
-  padding: 1.25rem;
-  background-color: #fff;
+  padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+  margin-bottom: 0.625rem;
+  background-color: white;
 }
 
 .o-product__brand {
@@ -949,7 +973,9 @@
 
 .o-product__subtitle {
   font-size: 0.875rem;
-  line-height: 20px;
+  /* 14px */
+  line-height: 1.42857;
+  /* 20px */
 }
 
 .o-product__subtitleLink {
@@ -959,9 +985,11 @@
 .o-product__name {
   padding-bottom: 1.5625rem;
   color: #1d1d1d;
-  font-size: 1rem;
   font-weight: 400;
-  line-height: 22px;
+  font-size: 1rem;
+  /* 16px */
+  line-height: 1.375;
+  /* 22px */
 }
 
 .o-product__isFreeCargo {
@@ -973,17 +1001,15 @@
   border-top: 0.5px solid #d0d0d0;
   color: #1d1d1d;
   font-size: 1rem;
+  /* 16px */
+  line-height: 1.375;
+  /* 22px */
 }
 
 .o-product__freeCargoIcon {
   width: 18px;
   margin-top: 2px;
   margin-right: 0.9375rem;
-  fill: #03a87c;
-}
-
-.o-product__freeCargoIconPath {
-  fill-rule: evenodd;
 }
 
 .o-product__sizeChart {
@@ -997,7 +1023,9 @@
   color: #1d1d1d;
   font-family: "Avenir", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 0.875rem;
-  line-height: 18px;
+  /* 14px */
+  line-height: 1.28571;
+  /* 18px */
 }
 
 .a-discountBadge {
@@ -1012,9 +1040,24 @@
   margin-top: -50px;
   background-color: #ee403d;
   color: #fff;
-  font-size: 0.875rem;
   font-weight: 700;
-  line-height: 20px;
+  font-size: 0.875rem;
+  /* 14px */
+  line-height: 1.42857;
+  /* 20px */
+}
+
+.m-productShare__btn {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+  margin-bottom: 0.625rem;
+  background-color: white;
+  font-size: 1rem;
+  /* 16px */
+  line-height: 1.375;
+  /* 22px */
 }
 
 /*# sourceMappingURL=maps/product-detail.css.map */
