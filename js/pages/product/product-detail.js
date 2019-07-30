@@ -2769,7 +2769,8 @@
       shareProduct: function () {
         var vm = this;
         const shareBtn = document.querySelector('[data-share-btn]');
-        const title = this.product.name;
+        const title = this.product.attributes.brand;
+        const text = this.product.name;
         const url = document.querySelector('link[rel=canonical]') &&
           document.querySelector('link[rel=canonical]').href ||
           window.location.href;
@@ -2777,6 +2778,7 @@
         if (navigator.share) {
           navigator.share({
             title,
+            text,
             url
           }).then(() => {
             vm.showMessage(shareBtn, 'Thanks! 😄');
