@@ -2626,20 +2626,20 @@
 
         return getProductDetail;
       }(),
-      showSizeChartModal: function showSizeChartModal() {
+      showSizeChartModal: function () {
         var vm = this;
         vm.lastScrollPosition = window.scrollY;
         document.body.classList.add("-fixedBody");
         vm.isShowSizeChartModal = true;
       },
-      closeSizeChartModal: function closeSizeChartModal() {
+      closeSizeChartModal: function () {
         var vm = this;
         document.body.classList.remove("-fixedBody");
         window.scrollTo(0, vm.lastScrollPosition);
         vm.isShowSizeChartModal = false;
         vm.lastScrollPosition = 0;
       },
-      loadSlider: function loadSlider(elements) {
+      loadSlider: function (elements) {
         var vm = this;
         elements.forEach(
         /*#__PURE__*/
@@ -2757,7 +2757,36 @@
             return _ref.apply(this, arguments);
           };
         }());
-      }
+      },
+      shareProduct: function () {
+        const shareBtn = document.querySelector('[data-share-btn]');
+        const ogBtnContent = shareBtn.textContent;
+        const title = this.product.name;
+        const url = document.querySelector('link[rel=canonical]') &&
+          document.querySelector('link[rel=canonical]').href ||
+          window.location.href;
+
+        if (navigator.share) {
+          navigator.share({
+            title,
+            url
+          }).then(() => {
+            showMessage(shareBtn, 'Thanks! 😄');
+          })
+            .catch(err => {
+              showMessage(shareBtn, `Couldn't share 🙁`);
+            });
+        } else {
+          showMessage(shareBtn, 'Not supported 🙅‍');
+        }
+
+      },
+      showMessage: function (element, msg) {
+        element.textContent = msg;
+            setTimeout(() => {
+            element.textContent = ogBtnContent;
+          }, 2000);
+        }
     }
   });
 
