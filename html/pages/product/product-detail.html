@@ -58,11 +58,14 @@
 
 			<button class="m-productShare__btn" data-share-btn type="button" v-on:click="shareProduct">
 				Paylaş
-				<svg width="12" height="16" xmlns="http://www.w3.org/2000/svg">
-					<path
-						d="M9.705 4.003l-1.011 1.09-1.944-1.82v7.024h-1.5V3.273l-1.908 1.82-1.022-1.09L6.031.5l3.674 3.503zM12 15.5H0V7.25h1.5V14h9V7.25H12v8.25z"
-						fill="#1D1D1D" fill-rule="evenodd" /></svg>
+				<svg width="12" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M9.705 4.003l-1.011 1.09-1.944-1.82v7.024h-1.5V3.273l-1.908 1.82-1.022-1.09L6.031.5l3.674 3.503zM12 15.5H0V7.25h1.5V14h9V7.25H12v8.25z" fill="#1D1D1D" fill-rule="evenodd"/></svg>
 			</button>
+			<product-share
+				v-if="isShowProductShareModal"
+				v-bind:share-url="shareUrl"
+				v-bind:product-name="product.name"
+				v-on:close="closeProductShareModal()"
+			></product-share>
 
 			<recommended-slider-loading-skeleton data-product-recommended-slider v-if="completeTheCombination.products.length === 0"></recommended-slider-loading-skeleton>
 			<recommended-product-slider
